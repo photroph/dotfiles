@@ -1,0 +1,58 @@
+scriptencoding utf-8
+"---------------------------------------------------------------------------
+" do not make backup file (~ file)
+:set nobackup
+:set noswapfile
+:set noundofile
+
+
+"---------------------------------------------------------------------------
+" setting about edit
+"---------------------------------------------------------------------------
+set tabstop=4
+set autoindent
+set expandtab
+set shiftwidth=4
+"double ESC to unhighlight
+nnoremap <ESC><ESC> :nohl<CR>
+
+"閉じ括弧が入力されたとき、対応する括弧を表示する
+" set showmatch
+" 行番号を表示
+set number
+syntax on
+
+"---------------------------------------------------------------------------
+" 見た目に関する設定
+"---------------------------------------------------------------------------
+"insert mode時、ステータスラインのカラーを変更
+augroup InsertHook
+autocmd!
+autocmd InsertEnter * highlight StatusLine guifg=#ccdc90 guibg=#2E4340
+autocmd InsertLeave * highlight StatusLine guifg=#2E4340 guibg=#ccdc90
+augroup END
+
+" load colorscheme
+colorscheme hybrid
+set background=dark
+
+" change guifont
+if has('win32')
+    set guifont=Ricty_diminished:h12:cSHIFTJIS:qDRAFT
+endif
+
+" set columns
+set columns=200
+" set lines
+set lines=60
+" set cmdheight
+set cmdheight=2
+" hide toolbar
+set guioptions-=T
+" hide menu
+set guioptions-=m
+" make transparent
+:set transparency=210
+autocmd GUIEnter * set transparency=230
+autocmd FocusGained * set transparency=230
+autocmd FocusLost * set transparency=128
