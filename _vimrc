@@ -14,7 +14,6 @@ set smartcase
 "---------------------------------------------------------------------------
 " 編集に関する設定:
 syntax enable
-" Tab系
 " 不可視文字を可視化(タブが「▸-」と表示される)
 set list listchars=tab:\▸\-
 " Tab文字を半角スペースにする
@@ -37,6 +36,8 @@ set wildmenu
 set formatoptions+=mM
 "htmlのタグ閉じ
 let g:loadedInsertTag = 1
+" silent beep
+set belloff=all
 
 "---------------------------------------------------------------------------
 " GUI固有ではない画面表示の設定:
@@ -89,6 +90,8 @@ inoremap (<Enter> ()<Left><CR><ESC><S-o>
 noremap x "_x
 " insert時にjjでEsc
 inoremap jj <Esc>
+" C-n to NERDTree
+map <C-n> :NERDTreeToggle<CR>
 
 " dein関係------------------------------------------------------------------
 " deinパス設定
@@ -108,6 +111,8 @@ endif
 " 必須
 call dein#begin(s:dein_dir)
 call dein#add('Shougo/neocomplcache')
+call dein#add('mattn/emmet-vim')
+call dein#add('scrooloose/nerdtree')
 
 " 必須
 call dein#end()
