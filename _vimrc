@@ -113,6 +113,7 @@ call dein#begin(s:dein_dir)
 call dein#add('Shougo/neocomplcache')
 call dein#add('mattn/emmet-vim')
 call dein#add('scrooloose/nerdtree')
+call dein#add('bronson/vim-visual-star-search')
 
 " 必須
 call dein#end()
