@@ -1,31 +1,6 @@
 scriptencoding utf-8
 "---------------------------------------------------------------------------
-" do not make backup file (~ file)
-:set nobackup
-:set noswapfile
-:set noundofile
-
-
-"---------------------------------------------------------------------------
-" setting about edit
-"---------------------------------------------------------------------------
-set tabstop=4
-set autoindent
-set expandtab
-set shiftwidth=4
-"double ESC to unhighlight
-nnoremap <ESC><ESC> :nohl<CR>
-
-"閉じ括弧が入力されたとき、対応する括弧を表示する
-" set showmatch
-" 行番号を表示
-set number
-syntax on
-
-"---------------------------------------------------------------------------
-" 見た目に関する設定
-"---------------------------------------------------------------------------
-"insert mode時、ステータスラインのカラーを変更
+" when insert mode change status line color
 augroup InsertHook
 autocmd!
 autocmd InsertEnter * highlight StatusLine guifg=#ccdc90 guibg=#2E4340
