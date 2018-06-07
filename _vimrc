@@ -23,10 +23,10 @@ set nolist
 set listchars=tab:>-,extends:<,trail:-,eol:<
 " 長い行を折り返して表示 (nowrap:折り返さない)
 set wrap
-" 常にステータス行を表示 (詳細は:he laststatus)
-set laststatus=2
-" コマンドラインの高さ (Windows用gvim使用時はgvimrcを編集すること)
-set cmdheight=2
+" show statusline when multiple windows opened (:he laststatus)
+set laststatus=1
+" set height of commandline
+set cmdheight=1
 " コマンドをステータス行に表示
 set showcmd
 " タイトルを表示
@@ -47,8 +47,6 @@ set smartindent
 set backspace=indent,eol,start
 " 括弧入力時に対応する括弧を表示 (noshowmatch:表示しない)
 set showmatch
-"htmlのタグ閉じ
-let g:loadedInsertTag = 1
 
 "---------------------------------------------------------------------------
 "   search settings
@@ -95,6 +93,16 @@ noremap x "_x
 inoremap jj <Esc>
 " C-n to NERDTree
 map <C-n> :NERDTreeToggle<CR>
+" prohibit allowline
+noremap <Up> <Nop>
+noremap <Down> <Nop>
+noremap <Left> <Nop>
+noremap <Right> <Nop>
+
+" ------------------------------------------------------------------------
+"   other
+" ------------------------------------------------------------------------
+set mouse-=a
 
 " ------------------------------------------------------------------------
 "   dein
@@ -121,6 +129,10 @@ call dein#add('Shougo/neocomplcache')
 call dein#add('mattn/emmet-vim')
 call dein#add('scrooloose/nerdtree')
 call dein#add('bronson/vim-visual-star-search')
+call dein#add('posva/vim-vue')
+call dein#add('yegappan/grep')
+call dein#add('Lokaltog/vim-powerline')
+call dein#add('itchyny/lightline.vim')
 
 " below 3 lines are essential
 call dein#end()

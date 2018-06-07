@@ -14,6 +14,7 @@ set background=dark
 " change guifont
 if has('win32')
     set guifont=Ricty_diminished:h12:cSHIFTJIS:qDRAFT
+    set rop=type:directx
 endif
 
 " set columns
@@ -21,7 +22,7 @@ set columns=200
 " set lines
 set lines=60
 " set cmdheight
-set cmdheight=2
+set cmdheight=1
 " hide toolbar
 set guioptions-=T
 " hide menu
