@@ -47,6 +47,7 @@ set smartindent
 set backspace=indent,eol,start
 " 括弧入力時に対応する括弧を表示 (noshowmatch:表示しない)
 set showmatch
+set matchtime=1
 
 "---------------------------------------------------------------------------
 "   search settings
@@ -63,7 +64,6 @@ set hlsearch
 set ignorecase
 " 大文字小文字の両方が含まれている場合は大文字小文字を区別
 set smartcase
-
 
 "---------------------------------------------------------------------------
 "   file settings
@@ -100,6 +100,14 @@ noremap <Left> <Nop>
 noremap <Right> <Nop>
 
 " ------------------------------------------------------------------------
+"   settings of neocomplete
+" ------------------------------------------------------------------------
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
+" Set minimum syntax keyword length.
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+
+" ------------------------------------------------------------------------
 "   other
 " ------------------------------------------------------------------------
 set mouse-=a
@@ -133,6 +141,7 @@ call dein#add('posva/vim-vue')
 call dein#add('yegappan/grep')
 call dein#add('Lokaltog/vim-powerline')
 call dein#add('itchyny/lightline.vim')
+call dein#add('Shougo/neocomplete.vim')
 
 " below 3 lines are essential
 call dein#end()
