@@ -1,5 +1,4 @@
 scriptencoding utf-8
-" vim:set ts=8 sts=2 sw=2 tw=0: (この行に関しては:help modelineを参照)
 set encoding=utf-8
 set fenc=utf-8
 
@@ -29,6 +28,8 @@ set cmdheight=1
 set showcmd
 " タイトルを表示
 set title
+set background=dark
+let g:Powerline_symbols = 'fancy'
 
 "---------------------------------------------------------------------------
 "   edit settings
@@ -46,6 +47,11 @@ set backspace=indent,eol,start
 " 括弧入力時に対応する括弧を表示 (noshowmatch:表示しない)
 set showmatch
 set matchtime=1
+
+augroup fileTypeIndent
+  autocmd!
+  autocmd BufNewFile,BufRead *.css setlocal tabstop=2 softtabstop=2 shiftwidth=2
+augroup END
 
 "---------------------------------------------------------------------------
 "   search settings
@@ -67,7 +73,6 @@ set smartcase
 "   file settings
 "---------------------------------------------------------------------------
  
-" バックアップファイルを作成しない
 "set directory=~/AppData/Local/Temp
 "set backupdir=~/AppData/Local/Temp
 "set undodir=~/AppData/Local/Temp
@@ -82,8 +87,11 @@ set smartcase
 " double ESC to clear highlights
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
 " 括弧の補完
+inoremap { {}<Left>
 inoremap {<Enter> {}<Left><CR><ESC><S-o>
+inoremap [ []<Left>
 inoremap [<Enter> []<Left><CR><ESC><S-o>
+inoremap ( ()<Left>
 inoremap (<Enter> ()<Left><CR><ESC><S-o>
 " xでヤンク内容が消えないようにする
 noremap x "_x
@@ -134,10 +142,16 @@ call dein#add('mattn/emmet-vim')
 call dein#add('scrooloose/nerdtree')
 call dein#add('bronson/vim-visual-star-search')
 call dein#add('posva/vim-vue')
+call dein#add('vim-scripts/grep.vim')
 call dein#add('yegappan/grep')
 call dein#add('Lokaltog/vim-powerline')
 call dein#add('itchyny/lightline.vim')
-call dein#add('Shougo/neocomplete.vim')
+call dein#add('Shougo/deoplete.nvim')
+if !has('nvim')
+  call dein#add('roxma/nvim-yarp')
+  call dein#add('roxma/vim-hug-neovim-rpc')
+endif
+let g:deoplete#enable_at_startup = 1
 
 " below 3 lines are essential
 call dein#end()
@@ -149,3 +163,4 @@ if dein#check_install()
   call dein#install()
 endif
 " ------------------------------------------------------------------------
+colorscheme codedark
