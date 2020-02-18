@@ -1,5 +1,4 @@
 scriptencoding utf-8
-" vim:set ts=8 sts=2 sw=2 tw=0: (この行に関しては:help modelineを参照)
 set encoding=utf-8
 set fenc=utf-8
 
@@ -21,8 +20,8 @@ set nolist
 set listchars=tab:>-,extends:<,trail:-,eol:<
 " 長い行を折り返して表示 (nowrap:折り返さない)
 set wrap
-" show statusline when multiple windows opened (:he laststatus)
-set laststatus=1
+" always show statusline
+set laststatus=2
 " set height of commandline
 set cmdheight=1
 " コマンドをステータス行に表示
@@ -40,12 +39,18 @@ set shiftwidth=4
 " タブの画面上での幅
 set tabstop=4
 " 自動的にインデントする (noautoindent:インデントしない)
+set autoindent
 set smartindent
 " バックスペースでインデントや改行を削除できるようにする
 set backspace=indent,eol,start
 " 括弧入力時に対応する括弧を表示 (noshowmatch:表示しない)
 set showmatch
 set matchtime=1
+augroup fileTypeIndent
+  autocmd!
+  autocmd BufNewFile,BufRead *.scss setlocal tabstop=2 softtabstop=2 shiftwidth=2
+  autocmd BufNewFile,BufRead *.css setlocal tabstop=2 softtabstop=2 shiftwidth=2
+augroup END
 
 "---------------------------------------------------------------------------
 "   search settings
@@ -58,15 +63,13 @@ set belloff=all
 set incsearch
 " 検索語をハイライト表示
 set hlsearch
-" 検索時に大文字小文字を無視 (noignorecase:無視しない)
-set ignorecase
 " 大文字小文字の両方が含まれている場合は大文字小文字を区別
 set smartcase
 
 "---------------------------------------------------------------------------
 "   file settings
 "---------------------------------------------------------------------------
- 
+
 " バックアップファイルを作成しない
 "set directory=~/AppData/Local/Temp
 "set backupdir=~/AppData/Local/Temp
@@ -89,6 +92,8 @@ inoremap (<Enter> ()<Left><CR><ESC><S-o>
 noremap x "_x
 " insert時にjjでEsc
 inoremap jj <Esc>
+"C-n to NERDTree
+map <C-n> :NERDTreeToggle<CR>
 " prohibit allowline
 noremap <Up> <Nop>
 noremap <Down> <Nop>
@@ -104,6 +109,71 @@ let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#sources#syntax#min_keyword_length = 3
 
 " ------------------------------------------------------------------------
+"   settings of lightline
+" ------------------------------------------------------------------------
+set noshowmode " lightline displays mode
+let g:lightline = {
+            \ 'colorscheme': 'solarized',
+            \ 'mode_map': {'c': 'NORMAL'},
+            \ 'active': {
+            \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ]
+            \ },
+            \ 'separator': { 'left': "\u2b80", 'right': "\u2b82" },
+            \ 'subseparator': { 'left': "\u2b81", 'right': "\u2b83" },
+            \ 'component_function': {
+            \   'modified': 'LightlineModified',
+            \   'readonly': 'LightlineReadonly',
+            \   'fugitive': 'LightlineFugitive',
+            \   'filename': 'LightlineFilename',
+            \   'fileformat': 'LightlineFileformat',
+            \   'filetype': 'LightlineFiletype',
+            \   'fileencoding': 'LightlineFileencoding',
+            \   'mode': 'LightlineMode'
+            \ }
+            \ }
+
+function! LightlineModified()
+    return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+endfunction
+
+function! LightlineReadonly()
+    return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? 'x' : ''
+endfunction
+
+function! LightlineFilename()
+    return ('' != LightlineReadonly() ? LightlineReadonly() . ' ' : '') .
+                \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
+                \  &ft == 'unite' ? unite#get_status_string() :
+                \  &ft == 'vimshell' ? vimshell#get_status_string() :
+                \ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
+                \ ('' != LightlineModified() ? ' ' . LightlineModified() : '')
+endfunction
+
+function! LightlineFugitive()
+    if &ft !~? 'vimfiler\|gundo' && exists('*fugitive#head')
+        return fugitive#head()
+    else
+        return ''
+    endif
+endfunction
+
+function! LightlineFileformat()
+    return winwidth(0) > 70 ? &fileformat : ''
+endfunction
+
+function! LightlineFiletype()
+    return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+endfunction
+
+function! LightlineFileencoding()
+    return winwidth(0) > 70 ? (&fenc !=# '' ? &fenc : &enc) : ''
+endfunction
+
+function! LightlineMode()
+    return winwidth(0) > 60 ? lightline#mode() : ''
+endfunction
+
+" ------------------------------------------------------------------------
 "   other
 " ------------------------------------------------------------------------
 set mouse-=a
@@ -111,41 +181,38 @@ set mouse-=a
 " ------------------------------------------------------------------------
 "   dein
 " ------------------------------------------------------------------------
-" dein path settings
-let s:dein_dir = fnamemodify('~/vim/dein/', ':p') "<-お好きな場所
-let s:dein_repo_dir = s:dein_dir . 'repos/github.com/Shougo/dein.vim' "<-固定
-
-" dein.vim本体の存在チェックとインストール
-if !isdirectory(s:dein_repo_dir)
-    execute '!git clone https://github.com/Shougo/dein.vim' shellescape(s:dein_repo_dir)
-endif
-
-" dein.vim本体をランタイムパスに追加
-if &runtimepath !~# '/dein.vim'
-    execute 'set runtimepath^=' . s:dein_repo_dir
-endif
-
-" essential
-call dein#begin(s:dein_dir)
-call dein#add('Shougo/neocomplcache')
-
-" packages
-call dein#add('mattn/emmet-vim')
-call dein#add('scrooloose/nerdtree')
-call dein#add('bronson/vim-visual-star-search')
-call dein#add('posva/vim-vue')
-call dein#add('yegappan/grep')
-call dein#add('Lokaltog/vim-powerline')
-call dein#add('itchyny/lightline.vim')
-call dein#add('Shougo/neocomplete.vim')
-
-" below 3 lines are essential
-call dein#end()
-filetype plugin indent on
-syntax enable
-
-" install plugins
-if dein#check_install()
-  call dein#install()
-endif
-" ------------------------------------------------------------------------
+call plug#begin('~/.local/share/nvim/plugged')
+Plug 'scrooloose/nerdtree'
+Plug 'itchyny/lightline.vim'
+call plug#end()
+"" dein path settings
+"let s:dein_dir = fnamemodify('~/vim/dein/', ':p') "<-お好きな場所
+"let s:dein_repo_dir = s:dein_dir . 'repos/github.com/Shougo/dein.vim' "<-固定
+"
+"" dein.vim本体の存在チェックとインストール
+"if !isdirectory(s:dein_repo_dir)
+"    execute '!git clone https://github.com/Shougo/dein.vim' shellescape(s:dein_repo_dir)
+"endif
+"
+"" dein.vim本体をランタイムパスに追加
+"if &runtimepath !~# '/dein.vim'
+"    execute 'set runtimepath^=' . s:dein_repo_dir
+"endif
+"
+"" essential
+"call dein#begin(s:dein_dir)
+"call dein#add('Shougo/neocomplcache')
+"
+"" packages
+"call dein#add('mattn/emmet-vim')
+"call dein#add('scrooloose/nerdtree')
+"call dein#add('bronson/vim-visual-star-search')
+"call dein#add('posva/vim-vue')
+"call dein#add('yegappan/grep')
+"call dein#add('Lokaltog/vim-powerline')
+"call dein#add('Shougo/neocomplete.vim')
+"
+"" below 3 lines are essential
+"call dein#end()
+"filetype plugin indent on
+"syntax enable
