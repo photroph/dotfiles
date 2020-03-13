@@ -1,0 +1,34 @@
+{
+    "editor.wordWrap": "on",
+    "editor.formatOnSave": false, // 時間のかかるフォーマットだとバグが出るのでfalse こぴぺ
+    "editor.minimap.enabled": false,
+
+    "files.trimTrailingWhitespace": true,
+
+    // vim
+    "vim.hlsearch": true,
+    "vim.useCtrlKeys": true,
+    "vim.insertModeKeyBindings": [
+        // jj to Escape
+        { "before": ["j","j"], "after": ["<esc>"] }
+    ],
+    "vim.normalModeKeyBindingsNonRecursive": [
+        // use original undo by vscodevim undo
+        { "before": ["u"], "after": [], "commands": [ { "command": "undo" } ] },
+        // use original redo by vscodevim redo
+        { "before": ["<C-r>"], "after": [], "commands": [ { "command": "redo" } ] }
+        // discard to use sidebar toggle of original vscode keybindings
+        { "before": ["<C-b>"], "after": [], "commands": [ { "command": "workbench.action.toggleSidebarVisibility" } ] },
+    ],
+    "vim.statusBarColorControl": true,
+    "vim.statusBarColors.normal": ["#278BD2", "#434C5E"],
+    "vim.statusBarColors.insert": "#DC322E",
+    "vim.statusBarColors.visual": "#859900",
+    "vim.statusBarColors.replace": "#D08770",
+    "workbench.colorCustomizations": {
+        "statusBar.background": "#278BD2",
+        "statusBar.noFolderBackground": "#278BD2",
+        "statusBar.debuggingBackground": "#278BD2"
+    },
+    "workbench.colorTheme": "Solarized Dark+"
+}

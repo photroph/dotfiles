@@ -28,6 +28,11 @@ set cmdheight=1
 set showcmd
 " タイトルを表示
 set title
+set background=dark
+" colorscheme solarized
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+let g:airline_powerline_fonts = 1
 
 "---------------------------------------------------------------------------
 "   edit settings
@@ -101,77 +106,17 @@ noremap <Left> <Nop>
 noremap <Right> <Nop>
 
 " ------------------------------------------------------------------------
-"   settings of neocomplete
+"   settings of vim-lsp
 " ------------------------------------------------------------------------
-" Use neocomplete.
-let g:neocomplete#enable_at_startup = 1
+let g:lsp_settings_servers_dir='~/dotfiles/.servers'
+
+" ------------------------------------------------------------------------
+"   settings of deoplete
+" ------------------------------------------------------------------------
+" Use deoplete.
+let g:deoplete#enable_at_startup = 1
 " Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-
-" ------------------------------------------------------------------------
-"   settings of lightline
-" ------------------------------------------------------------------------
-set noshowmode " lightline displays mode
-let g:lightline = {
-            \ 'colorscheme': 'solarized',
-            \ 'mode_map': {'c': 'NORMAL'},
-            \ 'active': {
-            \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ]
-            \ },
-            \ 'separator': { 'left': "\u2b80", 'right': "\u2b82" },
-            \ 'subseparator': { 'left': "\u2b81", 'right': "\u2b83" },
-            \ 'component_function': {
-            \   'modified': 'LightlineModified',
-            \   'readonly': 'LightlineReadonly',
-            \   'fugitive': 'LightlineFugitive',
-            \   'filename': 'LightlineFilename',
-            \   'fileformat': 'LightlineFileformat',
-            \   'filetype': 'LightlineFiletype',
-            \   'fileencoding': 'LightlineFileencoding',
-            \   'mode': 'LightlineMode'
-            \ }
-            \ }
-
-function! LightlineModified()
-    return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
-endfunction
-
-function! LightlineReadonly()
-    return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? 'x' : ''
-endfunction
-
-function! LightlineFilename()
-    return ('' != LightlineReadonly() ? LightlineReadonly() . ' ' : '') .
-                \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
-                \  &ft == 'unite' ? unite#get_status_string() :
-                \  &ft == 'vimshell' ? vimshell#get_status_string() :
-                \ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
-                \ ('' != LightlineModified() ? ' ' . LightlineModified() : '')
-endfunction
-
-function! LightlineFugitive()
-    if &ft !~? 'vimfiler\|gundo' && exists('*fugitive#head')
-        return fugitive#head()
-    else
-        return ''
-    endif
-endfunction
-
-function! LightlineFileformat()
-    return winwidth(0) > 70 ? &fileformat : ''
-endfunction
-
-function! LightlineFiletype()
-    return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
-endfunction
-
-function! LightlineFileencoding()
-    return winwidth(0) > 70 ? (&fenc !=# '' ? &fenc : &enc) : ''
-endfunction
-
-function! LightlineMode()
-    return winwidth(0) > 60 ? lightline#mode() : ''
-endfunction
+let g:deoplete#sources#syntax#min_keyword_length = 3
 
 " ------------------------------------------------------------------------
 "   other
@@ -182,37 +127,12 @@ set mouse-=a
 "   dein
 " ------------------------------------------------------------------------
 call plug#begin('~/.local/share/nvim/plugged')
+Plug 'vim-airline/vim-airline'
 Plug 'scrooloose/nerdtree'
-Plug 'itchyny/lightline.vim'
+Plug 'mattn/emmet-vim'
+Plug 'scrooloose/nerdtree'
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
+Plug 'Shougo/deoplete.nvim'
 call plug#end()
-"" dein path settings
-"let s:dein_dir = fnamemodify('~/vim/dein/', ':p') "<-お好きな場所
-"let s:dein_repo_dir = s:dein_dir . 'repos/github.com/Shougo/dein.vim' "<-固定
-"
-"" dein.vim本体の存在チェックとインストール
-"if !isdirectory(s:dein_repo_dir)
-"    execute '!git clone https://github.com/Shougo/dein.vim' shellescape(s:dein_repo_dir)
-"endif
-"
-"" dein.vim本体をランタイムパスに追加
-"if &runtimepath !~# '/dein.vim'
-"    execute 'set runtimepath^=' . s:dein_repo_dir
-"endif
-"
-"" essential
-"call dein#begin(s:dein_dir)
-"call dein#add('Shougo/neocomplcache')
-"
-"" packages
-"call dein#add('mattn/emmet-vim')
-"call dein#add('scrooloose/nerdtree')
-"call dein#add('bronson/vim-visual-star-search')
-"call dein#add('posva/vim-vue')
-"call dein#add('yegappan/grep')
-"call dein#add('Lokaltog/vim-powerline')
-"call dein#add('Shougo/neocomplete.vim')
-"
-"" below 3 lines are essential
-"call dein#end()
-"filetype plugin indent on
-"syntax enable
