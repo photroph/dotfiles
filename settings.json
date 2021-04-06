@@ -28,7 +28,8 @@
     "workbench.colorCustomizations": {
         "statusBar.background": "#278BD2",
         "statusBar.noFolderBackground": "#278BD2",
-        "statusBar.debuggingBackground": "#278BD2"
+        "statusBar.debuggingBackground": "#278BD2",
+        "terminal.background": "#0B0F44"
     },
-    "workbench.colorTheme": "Solarized Dark+"
+    "workbench.colorTheme": "Solarized Dark"
 }
