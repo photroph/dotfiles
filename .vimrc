@@ -126,13 +126,13 @@ set mouse-=a
 " ------------------------------------------------------------------------
 "   dein
 " ------------------------------------------------------------------------
-call plug#begin('~/.local/share/nvim/plugged')
-Plug 'vim-airline/vim-airline'
-Plug 'scrooloose/nerdtree'
-Plug 'mattn/emmet-vim'
-Plug 'scrooloose/nerdtree'
-Plug 'prabirshrestha/async.vim'
-Plug 'prabirshrestha/vim-lsp'
-Plug 'mattn/vim-lsp-settings'
-Plug 'Shougo/deoplete.nvim'
-call plug#end()
+" call plug#begin('~/.local/share/nvim/plugged')
+" Plug 'vim-airline/vim-airline'
+" Plug 'scrooloose/nerdtree'
+" Plug 'mattn/emmet-vim'
+" Plug 'scrooloose/nerdtree'
+" Plug 'prabirshrestha/async.vim'
+" Plug 'prabirshrestha/vim-lsp'
+" Plug 'mattn/vim-lsp-settings'
+" Plug 'Shougo/deoplete.nvim'
+" call plug#end()

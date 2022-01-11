@@ -1,66 +1,7 @@
 [
     /////////////////////////////
-    //    Ctrl key bindings    //
-    /////////////////////////////
-    {
-        "key": "ctrl+2",
-        "command": "-workbench.action.focusSecondEditorGroup"
-    },
-    {
-        "key": "ctrl+c",
-        "command": "-editor.action.clipboardCopyAction",
-        "when": "textInputFocus"
-    },
-    {
-        "key": "ctrl+d",
-        "command": "-editor.action.addSelectionToNextFindMatch",
-        "when": "editorFocus"
-    },
-    {
-        "key": "ctrl+n",
-        "command": "-workbench.action.files.newUntitledFile"
-    },
-    {
-        "key": "ctrl+r",
-        "command": "-workbench.action.reloadWindow",
-        "when": "isDevelopment"
-    },
-    {
-        "key": "ctrl+u",
-        "command": "-cursorUndo",
-        "when": "textInputFocus"
-    },
-    {
-        "key": "ctrl+w",
-        "command": "-workbench.action.closeWindow",
-        "when": "!editorIsOpen && !multipleEditorGroups"
-    },
-    {
-        "key": "ctrl+w",
-        "command": "-workbench.action.closeActiveEditor"
-    },
-    {
-        "key": "ctrl+shift+w",
-        "command": "-workbench.action.closeWindow"
-    },
-    {
-        "key": "ctrl+x",
-        "command": "-editor.action.clipboardCutAction",
-        "when": "textInputFocus && !editorReadonly"
-    },
-    {
-        "key": "ctrl+insert",
-        "command": "-editor.action.clipboardCopyAction",
-        "when": "textInputFocus"
-    },
-    /////////////////////////////
     //         others          //
     /////////////////////////////
-    {
-        "key": "shift+delete",
-        "command": "-editor.action.clipboardCutAction",
-        "when": "textInputFocus && !editorReadonly"
-    },
     {
         "key": "[ArrowLeft]",
         "command": "",
