@@ -1,5 +1,5 @@
 {
-    "editor.wordWrap": "off",
+    "editor.wordWrap": "on",
     "editor.formatOnSave": false, // 時間のかかるフォーマットだとバグが出るのでfalse こぴぺ
     "editor.minimap.enabled": false,
     "files.trimTrailingWhitespace": true,
@@ -31,7 +31,7 @@
         { "before": ["<C-b>"], "after": [], "commands": [ { "command": "workbench.action.toggleSidebarVisibility" } ] }
     ],
     "vim.statusBarColorControl": true,
-    "vim.statusBarColors.normal": ["#278BD2", "#434C5E"],
+    "vim.statusBarColors.normal": ["#278BD2", "#FFFFFF"],
     "vim.statusBarColors.insert": "#DC322E",
     "vim.statusBarColors.visual": "#859900",
     "vim.statusBarColors.replace": "#D08770",
@@ -40,8 +40,8 @@
         "statusBar.noFolderBackground": "#278BD2",
         "statusBar.debuggingBackground": "#278BD2",
         "terminal.background": "#0B0F44",
-        "statusBar.foreground": "#434C5E",
-        "statusBar.debuggingForeground": "#434C5E"
+        "statusBar.foreground": "#FFFFFF",
+        "statusBar.debuggingForeground": "#FFFFFF"
     },
     "workbench.colorTheme": "Solarized Dark",
     "workbench.editorAssociations": {
