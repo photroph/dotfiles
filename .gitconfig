@@ -1,0 +1,9 @@
+[merge]
+	ff = false
+[pull]
+	ff = only
+[alias]
+	co = checkout
+	st = status
+	br = branch
+	sw = switch

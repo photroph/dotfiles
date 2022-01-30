@@ -6,6 +6,7 @@ PS1='%F{cyan}%~%F{green}
 >%F{white}'
 
 # aliases
+alias la='ls -la'
 alias ls='ls -FG'
 alias ll='ls -lh'
 alias rm='rm -i'
