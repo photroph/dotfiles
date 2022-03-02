@@ -4,6 +4,9 @@
 	ff = only
 [alias]
 	co = checkout
+    cm = commit -m
+    ft = fetch
+    mg = merge
 	st = status
 	br = branch
 	sw = switch
