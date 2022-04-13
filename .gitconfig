@@ -10,3 +10,5 @@
 	st = status
 	br = branch
 	sw = switch
+[init]
+	defaultBranch = main
