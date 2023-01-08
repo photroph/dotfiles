@@ -1,14 +1,19 @@
 export PATH
-
 export TERM=xterm-256color
+
 # prompt
-PS1='%F{cyan}%~%F{green}
->%F{white}'
+# PS1='%F{cyan}%~%F{green}
+# >%F{white}'
+eval "$(starship init zsh)"
 
 # aliases
+alias exa='exa --icons'
+alias el='exa -lh'
+alias ela='el -a'
 alias la='ls -la'
 alias ls='ls -FG'
 alias ll='ls -lh'
+alias nv='nvim'
 alias rm='rm -i'
 
 # for AtCoder
@@ -17,7 +22,6 @@ alias ojt='oj t -c "pypy3 ./main.py" -d tests'
 
 # ls color setting
 export LSCOLORS=hcfxcxdxbxegedabagacad
-eval "$(starship init zsh)"
 
 # history setting
 # 履歴ファイルの保存先

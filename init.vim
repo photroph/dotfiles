@@ -21,7 +21,7 @@ set listchars=tab:>-,extends:<,trail:-,eol:<
 " 長い行を折り返して表示 (nowrap:折り返さない)
 set wrap
 " show statusline when multiple windows opened (:he laststatus)
-set laststatus=1
+set laststatus=2
 " set height of commandline
 set cmdheight=1
 " コマンドをステータス行に表示
@@ -29,7 +29,6 @@ set showcmd
 " タイトルを表示
 set title
 set background=dark
-let g:Powerline_symbols = 'fancy'
 
 "---------------------------------------------------------------------------
 "   edit settings
@@ -47,6 +46,9 @@ set backspace=indent,eol,start
 " 括弧入力時に対応する括弧を表示 (noshowmatch:表示しない)
 set showmatch
 set matchtime=1
+set completeopt=menuone
+" 補完表示時のEnterで改行をしない
+inoremap <expr><CR>  pumvisible() ? "<C-y>" : "<CR>"
 
 augroup fileTypeIndent
   autocmd!
@@ -72,7 +74,6 @@ set smartcase
 "---------------------------------------------------------------------------
 "   file settings
 "---------------------------------------------------------------------------
- 
 "set directory=~/AppData/Local/Temp
 "set backupdir=~/AppData/Local/Temp
 "set undodir=~/AppData/Local/Temp
@@ -86,13 +87,6 @@ set smartcase
 " --------------------------------------------------------------------------
 " double ESC to clear highlights
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
-" 括弧の補完
-inoremap { {}<Left>
-inoremap {<Enter> {}<Left><CR><ESC><S-o>
-inoremap [ []<Left>
-inoremap [<Enter> []<Left><CR><ESC><S-o>
-inoremap ( ()<Left>
-inoremap (<Enter> ()<Left><CR><ESC><S-o>
 " xでヤンク内容が消えないようにする
 noremap x "_x
 " insert時にjjでEsc
@@ -104,63 +98,35 @@ noremap <Left> <Nop>
 noremap <Right> <Nop>
 
 " ------------------------------------------------------------------------
-"   settings of neocomplete
+"   settings of lightline
 " ------------------------------------------------------------------------
-" Use neocomplete.
-let g:neocomplete#enable_at_startup = 1
-" Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:lightline = {
+    \ 'colorscheme': 'terafox',
+    \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
+    \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
+\}
+
+" ------------------------------------------------------------------------
+"   settings of coc-nvim
+" ------------------------------------------------------------------------
+inoremap <expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+inoremap <expr> <Tab> coc#pum#visible() ? coc#pum#next(1) : "\<Tab>"
+inoremap <expr> <S-Tab> coc#pum#visible() ? coc#pum#prev(1) : "\<S-Tab>"
 
 " ------------------------------------------------------------------------
 "   other
 " ------------------------------------------------------------------------
 set mouse-=a
+set relativenumber
 
 " ------------------------------------------------------------------------
-"   dein
+"   vim-plug
 " ------------------------------------------------------------------------
-" dein path settings
-let s:dein_dir = fnamemodify('~/vim/dein/', ':p') "<-お好きな場所
-let s:dein_repo_dir = s:dein_dir . 'repos/github.com/Shougo/dein.vim' "<-固定
+call plug#begin()
+Plug 'EdenEast/nightfox.nvim'
+Plug 'w0ng/vim-hybrid'
+Plug 'itchyny/lightline.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+call plug#end()
 
-" dein.vim本体の存在チェックとインストール
-if !isdirectory(s:dein_repo_dir)
-    execute '!git clone https://github.com/Shougo/dein.vim' shellescape(s:dein_repo_dir)
-endif
-
-" dein.vim本体をランタイムパスに追加
-if &runtimepath !~# '/dein.vim'
-    execute 'set runtimepath^=' . s:dein_repo_dir
-endif
-
-" essential
-call dein#begin(s:dein_dir)
-call dein#add('Shougo/neocomplcache')
-
-" packages
-call dein#add('mattn/emmet-vim')
-call dein#add('scrooloose/nerdtree')
-call dein#add('bronson/vim-visual-star-search')
-call dein#add('posva/vim-vue')
-call dein#add('vim-scripts/grep.vim')
-call dein#add('yegappan/grep')
-call dein#add('Lokaltog/vim-powerline')
-call dein#add('itchyny/lightline.vim')
-call dein#add('Shougo/deoplete.nvim')
-if !has('nvim')
-  call dein#add('roxma/nvim-yarp')
-  call dein#add('roxma/vim-hug-neovim-rpc')
-endif
-let g:deoplete#enable_at_startup = 1
-
-" below 3 lines are essential
-call dein#end()
-filetype plugin indent on
-syntax enable
-
-" install plugins
-if dein#check_install()
-  call dein#install()
-endif
-" ------------------------------------------------------------------------
-colorscheme hybrid
+colorscheme terafox

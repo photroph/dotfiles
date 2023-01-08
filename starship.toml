@@ -1,0 +1,6 @@
+# ~/.config/starship.toml
+
+[time]
+disabled = false
+format = '🕙[\[$time\]]($style) '
+
