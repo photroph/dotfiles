@@ -12,3 +12,5 @@
 	sw = switch
 [init]
 	defaultBranch = main
+[include]
+    path = ~/.gitconfig_indiv
