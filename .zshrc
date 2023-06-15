@@ -1,5 +1,6 @@
 export PATH
-export TERM=xterm-256color
+autoload -U colors && colors
+export TERM="xterm-256color"
 
 # prompt
 # PS1='%F{cyan}%~%F{green}
@@ -10,6 +11,8 @@ eval "$(starship init zsh)"
 alias exa='exa --icons'
 alias el='exa -lh'
 alias ela='el -a'
+alias gd='git diff --unified=1'
+alias gs='git status'
 alias la='ls -la'
 alias ls='ls -FG'
 alias ll='ls -lh'
