@@ -8,8 +8,8 @@ export TERM="xterm-256color"
 eval "$(starship init zsh)"
 
 # aliases
-alias exa='exa --icons'
-alias el='exa -lh'
+alias eza='eza --icons'
+alias el='eza -lh'
 alias ela='el -a'
 alias gd='git diff --unified=1'
 alias gs='git status'
@@ -18,6 +18,8 @@ alias ls='ls -FG'
 alias ll='ls -lh'
 alias nv='nvim'
 alias rm='rm -i'
+alias lg='lazygit'
+alias ld='lazydocker'
 
 # for AtCoder
 alias actmp='cp /Users/photroph/workspace/atcoder/template/template.py ./main.py; open ./main.py'
@@ -35,3 +37,7 @@ setopt hist_ignore_dups
 setopt EXTENDED_HISTORY
 setopt hist_no_store
 
+# AWS CLI
+autoload bashcompinit && bashcompinit
+autoload -Uz compinit && compinit
+complete -C '/usr/local/bin/aws_completer' aws
