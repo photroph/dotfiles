@@ -37,7 +37,11 @@ setopt hist_ignore_dups
 setopt EXTENDED_HISTORY
 setopt hist_no_store
 
-# AWS CLI
+# completion
+## AWS CLI
 autoload bashcompinit && bashcompinit
 autoload -Uz compinit && compinit
 complete -C '/usr/local/bin/aws_completer' aws
+
+## Git
+zstyle ':completion:*:*:git:*' script /Library/Developer/CommandLineTools/usr/share/git-core/git-completion.bash
