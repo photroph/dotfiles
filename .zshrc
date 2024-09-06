@@ -6,11 +6,14 @@ export TERM="xterm-256color"
 # PS1='%F{cyan}%~%F{green}
 # >%F{white}'
 eval "$(starship init zsh)"
+# Set up fzf key bindings and fuzzy completion
+eval "$(fzf --zsh)"
 
 # aliases
 alias eza='eza --icons'
 alias el='eza -lh'
 alias ela='el -a'
+alias elt='el -s modified'
 alias gd='git diff --unified=1'
 alias gs='git status'
 alias la='ls -la'
