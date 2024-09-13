@@ -96,6 +96,8 @@ noremap <Up> <Nop>
 noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
+" fzf.vim
+nnoremap <C-p> :Files<CR>
 
 " ------------------------------------------------------------------------
 "   settings of lightline
@@ -127,6 +129,8 @@ Plug 'EdenEast/nightfox.nvim'
 Plug 'w0ng/vim-hybrid'
 Plug 'itchyny/lightline.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 call plug#end()
 
 colorscheme terafox
