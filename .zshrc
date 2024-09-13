@@ -10,6 +10,7 @@ eval "$(starship init zsh)"
 eval "$(fzf --zsh)"
 
 # aliases
+source $HOME/dotfiles/aliases.sh
 alias eza='eza --icons'
 alias el='eza -lh'
 alias ela='el -a'
