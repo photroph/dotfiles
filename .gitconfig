@@ -1,3 +1,7 @@
+[core]
+    pager = delta
+[interactive]
+    diffFilter = delta --color-only --features=interactive
 [merge]
 	ff = false
 [pull]
@@ -14,3 +18,7 @@
 	defaultBranch = main
 [include]
     path = ~/.gitconfig_indiv
+[delta]
+    line-numbers = true
+    side-by-side = false
+    syntax-theme = Solarized (dark)
