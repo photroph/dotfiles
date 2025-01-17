@@ -11,16 +11,13 @@ eval "$(fzf --zsh)"
 
 # aliases
 source $HOME/dotfiles/aliases.sh
-alias eza='eza --icons'
-alias el='eza -lh'
-alias ela='el -a'
-alias elt='el -s modified'
 alias gd='git diff --unified=1'
 alias gs='git status'
+alias ls='eza --icons'
 alias la='ls -la'
-alias ls='ls -FG'
 alias ll='ls -lh'
 alias nv='nvim'
+alias lt='ls --tree'
 alias rm='rm -i'
 alias lg='lazygit'
 alias ld='lazydocker'
