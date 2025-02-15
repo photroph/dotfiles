@@ -1,6 +1,140 @@
 # ~/.config/starship.toml
 
+add_newline = true
+format = """
+$username\
+$hostname\
+$localip\
+$shlvl\
+$singularity\
+$kubernetes\
+$directory\
+$vcsh\
+$fossil_branch\
+$fossil_metrics\
+$git_branch\
+$git_commit\
+$git_state\
+$git_metrics\
+$git_status\
+$hg_branch\
+$pijul_channel\
+$docker_context\
+$package\
+$c\
+$cmake\
+$cobol\
+$daml\
+$dart\
+$deno\
+$dotnet\
+$elixir\
+$elm\
+$erlang\
+$fennel\
+$gleam\
+$golang\
+$guix_shell\
+$haskell\
+$haxe\
+$helm\
+$java\
+$julia\
+$kotlin\
+$gradle\
+$lua\
+$nim\
+$nodejs\
+$ocaml\
+$opa\
+$perl\
+$php\
+$pulumi\
+$purescript\
+$python\
+$quarto\
+$raku\
+$rlang\
+$red\
+$ruby\
+$rust\
+$scala\
+$solidity\
+$swift\
+$terraform\
+$typst\
+$vlang\
+$vagrant\
+$zig\
+$buf\
+$nix_shell\
+$conda\
+$meson\
+$spack\
+$memory_usage\
+$aws\
+$gcloud\
+$openstack\
+$azure\
+$nats\
+$direnv\
+$env_var\
+$crystal\
+$custom\
+$sudo\
+$line_break\
+$jobs\
+$battery\
+$status\
+$os\
+$container\
+$shell\
+$character"""
+
+right_format = """
+$cmd_duration
+$time
+"""
+
+[aws]
+format = ' [ $symbol($profile)($region) ]($style)'
+style = 'bold bg:#ff9900 fg:#000000'
+symbol = ' '  # nf-fa-amazon
+
+[aws.region_aliases]
+us-west-2 = "Oregon"
+ap-northeast-1 = "Tokyo"
+
+[character]
+vimcmd_symbol = ' ' # nf-dev-vim
+
+[directory]
+format = '[$path ]($style)[$read_only]($read_only_style)'
+home_symbol = '  ' # nf-costum-home
+read_only = "󰌾"
+style = 'bold bg:#7aa2f7 fg:#1a1b26'
+truncation_symbol = '  ' # nf-fa-folder_open
+
+[git_branch]
+style = 'fg:#000000 bg:#1ba28b'
+format = '[ $symbol$branch(:$remote_branch) ]($style)'
+
+[git_status]
+style = 'fg:#0e6153 bg:#ffffff'
+ahead = '⇡${ahead_count}'
+behind = '⇣${behind_count}'
+up_to_date = ''  # nf-oct-check
+untracked = ''  # nf-fa-question
+modified = ' '
+deleted = ''
+
+[python]
+format = ' [ ${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
+symbol = ' ' # nf-dev-python
+style = 'bold bg:#2877bd fg:#f9c10b'
+
 [time]
 disabled = false
-format = '🕙[\[$time\]]($style) '
+style = 'fg:#73daca'
+format = '[   $time]($style)'
 
