@@ -9,7 +9,7 @@ start_session_with_ec2_instance(){
     fi
 
     instance_id=$(aws ec2 describe-instances --region $region --query 'Reservations[].Instances[].[InstanceId, State.Name, InstanceType, PrivateIpAddress, Platform || `Linux`, Tags[?Key == `Name`].Value | [0]]' --output text | column -t | fzf --reverse | cut -d ' ' -f 1)
-    aws ssm start-session --target ${instance_id}
+    aws ssm start-session --target ${instance_id} --region $region
 }
 
 alias ec2ss='start_session_with_ec2_instance'
