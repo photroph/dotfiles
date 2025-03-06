@@ -11,16 +11,6 @@ eval "$(fzf --zsh)"
 
 # aliases
 source $HOME/dotfiles/aliases.sh
-alias gd='git diff --unified=1'
-alias gs='git status'
-alias ls='eza --icons'
-alias la='ls -la'
-alias ll='ls -lh'
-alias nv='nvim'
-alias lt='ls --tree'
-alias rm='rm -i'
-alias lg='lazygit'
-alias ld='lazydocker'
 
 # for AtCoder
 alias actmp='cp /Users/photroph/workspace/atcoder/template/template.py ./main.py; open ./main.py'
