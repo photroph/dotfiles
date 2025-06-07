@@ -1,75 +1,94 @@
 {
-    "editor.codeActionsOnSave": {
-        "source.organizeImports": true,
-    },
+  "editor.formatOnSave": true,
+  "editor.insertSpaces": true,
+  "editor.lineNumbers": "relative",
+  "editor.minimap.enabled": false,
+  "editor.renderWhitespace": "all",
+  "editor.renderControlCharacters": true,
+  "editor.tabSize": 4,
+  "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-",
+  "editor.wordWrap": "on",
+  "files.trimTrailingWhitespace": true,
+
+  // ========== Language-specific preferences ==========
+  // C++
+  "C_Cpp.default.cppStandard": "gnu++17",
+  // ipynb
+  "notebook.codeActionsOnSave": {
+    "source.organizeImports": "explicit"
+  },
+  "workbench.editorAssociations": {
+    "*.ipynb": "jupyter-notebook"
+  },
+  "notebook.cellToolbarLocation": {
+    "default": "right",
+    "jupyter-notebook": "left"
+  },
+  "notebook.lineNumbers": "on",
+  // json
+  "[json][jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  // Python
+  "python.defaultInterpreterPath": "${userHome}/.pyenv/shims/python",
+  "python.linting.enabled": true,
+  "python.linting.lintOnSave": true,
+  "python.linting.ruffEnabled": true,
+  "python.linting.pylintEnabled": false,
+  "ruff.organizeImports": true,
+  "ruff.showSyntaxErrors": true,
+  "[python]": {
     "editor.formatOnSave": true,
-    "editor.insertSpaces": true,
-    "editor.lineNumbers": "relative",
-    "editor.minimap.enabled": false,
-    "editor.renderWhitespace": "all",
-    "editor.renderControlCharacters": true,
-    "editor.tabSize": 4,
-    "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-",
-    "editor.wordWrap": "on",
-    "files.trimTrailingWhitespace": true,
+    "editor.defaultFormatter": "charliermarsh.ruff"
+  },
+  // yaml
+  "[yaml]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
 
-    // C++
-    "C_Cpp.default.cppStandard": "gnu++17",
-
-    // python
-    "python.defaultInterpreterPath": "${userHome}/.pyenv/shims/python",
-    "python.languageServer": "Jedi",
-    "python.linting.enabled": true,
-    "python.linting.flake8Enabled": true,
-    "python.linting.flake8Args": [
-        "--max-line-length=160",
-   ],
-    "python.linting.lintOnSave": true,
-    "python.linting.pylintEnabled": false,
-    "python.pythonPath": "/usr/local/opt/python@3.9/bin/python3.9",
-
-    // vim
-    "vim.hlsearch": true,
-    "vim.useCtrlKeys": true,
-    "vim.insertModeKeyBindings": [
-        // jj to Escape
-        { "before": ["j","j"], "after": ["<esc>"] }
-    ],
-    "vim.normalModeKeyBindingsNonRecursive": [
-        // use original undo by vscodevim undo
-        { "before": ["u"], "after": [], "commands": [ { "command": "undo" } ] },
-        // use original redo by vscodevim redo
-        { "before": ["<C-r>"], "after": [], "commands": [ { "command": "redo" } ] },
-        // discard to use sidebar toggle of original vscode keybindings
-        { "before": ["<C-b>"], "after": [], "commands": [ { "command": "workbench.action.toggleSidebarVisibility" } ] },
-        { "before": ["<Enter>"], "commands": ["editor.action.insertLineAfter"] }
-    ],
-    "vim.statusBarColorControl": true,
-    "vim.statusBarColors.normal": ["#278BD2", "#FFFFFF"],
-    "vim.statusBarColors.insert": "#DC322E",
-    "vim.statusBarColors.visual": "#859900",
-    "vim.statusBarColors.replace": "#D08770",
-    "workbench.colorCustomizations": {
-        "statusBar.background": "#278BD2",
-        "statusBar.noFolderBackground": "#278BD2",
-        "statusBar.debuggingBackground": "#278BD2",
-        "terminal.background": "#0B0F44",
-        "statusBar.foreground": "#FFFFFF",
-        "statusBar.debuggingForeground": "#FFFFFF"
+  // ========== Vim Extension ==========
+  "vim.hlsearch": true,
+  "vim.useCtrlKeys": true,
+  "vim.insertModeKeyBindings": [
+    {
+      // jj to Escape
+      "before": ["j", "j"],
+      "after": ["<esc>"]
+    }
+  ],
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      // use original undo by vscodevim undo
+      "before": ["u"],
+      "after": [],
+      "commands": [{ "command": "undo" }]
     },
-    "workbench.colorTheme": "Solarized Dark",
-    "workbench.editorAssociations": {
-        "*.ipynb": "jupyter-notebook"
+    {
+      // use original redo by vscodevim redo
+      "before": ["<C-r>"],
+      "after": [],
+      "commands": [{ "command": "redo" }]
     },
+    {
+      // discard to use sidebar toggle of original vscode keybindings
+      "before": ["<C-b>"],
+      "after": [],
+      "commands": [{ "command": "workbench.action.toggleSidebarVisibility" }]
+    },
+    {
+      "before": ["<Enter>"],
+      "commands": ["editor.action.insertLineAfter"]
+    }
+  ],
 
-    // ipynb
-    "notebook.cellToolbarLocation": {
-        "default": "right",
-        "jupyter-notebook": "left"
-    },
-    "notebook.lineNumbers": "on",
-    // others
-    "bracketPairColorizer.depreciation-notice": false,
-    "cfnLint.path": "/Users/shigeo.hori/.pyenv/versions/3.12.0/bin/cfn-lint",
-    "workbench.startupEditor": "none",
+  // ========== Visual ==========
+  "workbench.activityBar.location": "top",
+
+  // ========== Other Extensions ==========
+  "bracketPairColorizer.depreciation-notice": false,
+  "workbench.startupEditor": "none",
+
+  // ========== Theme ==========
+  "workbench.colorTheme": "Nord",
+  "workbench.iconTheme": "ayu-mirage-zed"
 }
