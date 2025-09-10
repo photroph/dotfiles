@@ -7,3 +7,10 @@ gui:
     scrollHeight: 4
 os:
   editPreset: 'nvim'
+
+customCommands:
+  - key: 'D'
+    description: '直前のコミットを取り消し、変更内容をステージングエリアに戻す'
+    command: "git reset --soft HEAD^"
+    context: 'commits'
+    output: 'none'
