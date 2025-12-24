@@ -17,8 +17,14 @@
 [init]
 	defaultBranch = main
 [include]
-    path = ~/.gitconfig_indiv
+    path = ~/dotfiles/git/themes.gitconfig
 [delta]
+    dark = true
+    header = true
+    # features = collared-trogon
+    # features = gruvmax-fang
+    features = mantis-shrimp-lite
     line-numbers = true
-    side-by-side = false
+    side-by-side = true
     syntax-theme = Solarized (dark)
+    true-color = always
