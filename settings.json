@@ -9,6 +9,9 @@
   "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-",
   "editor.wordWrap": "on",
   "files.trimTrailingWhitespace": true,
+  // ========== Git ==========
+  "gitlens.currentLine.format": "${authorNotYou/}${date/}${message|50?}",
+  "gitlens.codeLens.enabled": false,
 
   // ========== Language-specific preferences ==========
   // C++
