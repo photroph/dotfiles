@@ -1,5 +1,5 @@
 {
-    "title": "settings for VMWare Horizon Client",
+    "title": "settings for VMWare/Omnissa Horizon Client",
     "rules": [
         {
             "description": "left_commandを単独で押すと英数キー、組み合わせて押すとalt key (Horizon client側の設定が標準の場合)",
@@ -29,7 +29,8 @@
                         {
                             "type": "frontmost_application_if",
                             "bundle_identifiers": [
-                                "^com\\.vmware\\.horizon"
+                                "^com\\.vmware\\.horizon",
+                                "^com\\.omnissa\\.horizon\\.client\\.mac"
                             ]
                         }
                     ]
@@ -64,7 +65,8 @@
                         {
                             "type": "frontmost_application_if",
                             "bundle_identifiers": [
-                                "^com\\.vmware\\.horizon"
+                                "^com\\.vmware\\.horizon",
+                                "^com\\.omnissa\\.horizon\\.client\\.mac"
                             ]
                         }
                     ]
