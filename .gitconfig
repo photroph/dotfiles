@@ -1,5 +1,7 @@
 [core]
     pager = delta
+[fetch]
+    prune = true
 [interactive]
     diffFilter = delta --color-only --features=interactive
 [merge]
