@@ -97,13 +97,9 @@ $time
 """
 
 [aws]
-format = ' [ $symbol($profile)($region) ]($style)'
-style = 'bold bg:#ff9900 fg:#000000'
-symbol = ' '  # nf-fa-amazon
-
-[aws.region_aliases]
-us-west-2 = "Oregon"
-ap-northeast-1 = "Tokyo"
+format = ' [\[]($style)[$symbol ($profile)/($region)]($style)[\]]($style)'
+style = 'bold fg:#ff9900'
+symbol = ''  # nf-fa-amazon
 
 [character]
 vimcmd_symbol = ' ' # nf-dev-vim
@@ -137,4 +133,3 @@ style = 'bold bg:#2877bd fg:#f9c10b'
 disabled = false
 style = 'fg:#73daca'
 format = '[   $time]($style)'
-
