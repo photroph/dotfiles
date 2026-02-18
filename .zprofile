@@ -16,3 +16,6 @@ export PATH="$VOLTA_HOME/bin:$PATH"
 
 export ANDROID_HOME="$HOME/Library/Android/sdk/"
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk-19.jdk/Contents/Home/"
+
+# use Homebrew
+export PATH="/opt/homebrew/bin:$PATH"
