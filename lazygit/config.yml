@@ -1,13 +1,12 @@
 git:
-  paging:
-    # colorArg: always
-    pager: delta --dark --paging=never
+  pagers:
+    - # colorArg: always
+      pager: delta --dark --paging=never
 gui:
-    nerdFontsVersion: "3"
-    scrollHeight: 4
+  nerdFontsVersion: "3"
+  scrollHeight: 4
 os:
   editPreset: 'nvim'
-
 customCommands:
   - key: 'D'
     description: '直前のコミットを取り消し、変更内容をステージングエリアに戻す'
