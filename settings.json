@@ -89,7 +89,6 @@
   "workbench.activityBar.location": "top",
 
   // ========== Other Extensions ==========
-  "bracketPairColorizer.depreciation-notice": false,
   "workbench.startupEditor": "none",
 
   // ========== Theme ==========
