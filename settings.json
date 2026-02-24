@@ -1,97 +1,203 @@
 {
-  "window.title": "${rootName} - ${activeEditorShort}",
+  // VSCode built-in `JSON : Sort Document` コマンドでsortしたものを保存する
+  "[dockercompose]": {
+    "editor.autoIndent": "advanced",
+    "editor.defaultFormatter": "redhat.vscode-yaml",
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2
+  },
+  "[github-actions-workflow]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "[json][jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.formatOnSave": true
+  },
+  "[yaml]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "C_Cpp.default.cppStandard": "gnu++17",
+  "chat.emptyState.history.enabled": true,
+  "chat.tools.terminal.autoApprove": {
+    "/^column\\b.*-c\\s+[0-9]{4,}/": false,
+    "/^Compare-[a-z0-9]/i": true,
+    "/^date\\b.*(-s|--set)\\b/": false,
+    "/^find\\b.*-(delete|exec|execdir|fprint|fprintf|fls|ok|okdir)\\b/": false,
+    "/^Format-[a-z0-9]/i": true,
+    "/^git branch\\b.*-(d|D|m|M|-delete|-force)\\b/": false,
+    "/^Measure-[a-z0-9]/i": true,
+    "/^Select-[a-z0-9]/i": true,
+    "/^Sort-[a-z0-9]/i": true,
+    "/^sort\\b.*-(o|S)\\b/": false,
+    "/^tree\\b.*-o\\b/": false,
+    "basename": true,
+    "cat": true,
+    "cd": true,
+    "chmod": false,
+    "chown": false,
+    "cmp": true,
+    "column": true,
+    "curl": false,
+    "cut": true,
+    "date": true,
+    "dd": false,
+    "del": false,
+    "df": true,
+    "dirname": true,
+    "du": true,
+    "echo": true,
+    "erase": false,
+    "eval": false,
+    "file": true,
+    "find": true,
+    "findstr": true,
+    "Get-ChildItem": true,
+    "Get-Content": true,
+    "Get-Date": true,
+    "Get-Location": true,
+    "Get-Random": true,
+    "git branch": true,
+    "git diff": true,
+    "git grep": true,
+    "git log": true,
+    "git show": true,
+    "git status": true,
+    "grep": true,
+    "head": true,
+    "iex": false,
+    "Invoke-Expression": false,
+    "Invoke-RestMethod": false,
+    "Invoke-WebRequest": false,
+    "irm": false,
+    "iwr": false,
+    "Join-Path": true,
+    "jq": false,
+    "kill": false,
+    "ls": true,
+    "ps": false,
+    "pwd": true,
+    "rd": false,
+    "readlink": true,
+    "realpath": true,
+    "Remove-Item": false,
+    "ri": false,
+    "rm": false,
+    "rmdir": false,
+    "Set-Acl": false,
+    "Set-ItemProperty": false,
+    "sleep": true,
+    "sort": true,
+    "sp": false,
+    "Split-Path": true,
+    "spps": false,
+    "Start-Sleep": true,
+    "stat": true,
+    "Stop-Process": false,
+    "tail": true,
+    "taskkill": false,
+    "taskkill.exe": false,
+    "top": false,
+    "tr": true,
+    "tree": true,
+    "wc": true,
+    "wget": false,
+    "Where-Object": true,
+    "which": true,
+    "Write-Host": true,
+    "Write-Output": true,
+    "xargs": false
+  },
   "editor.formatOnSave": true,
   "editor.insertSpaces": true,
   "editor.lineNumbers": "relative",
   "editor.minimap.enabled": false,
-  "editor.renderWhitespace": "all",
   "editor.renderControlCharacters": true,
+  "editor.renderWhitespace": "all",
   "editor.tabSize": 4,
   "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-",
   "editor.wordWrap": "on",
+  "extensions.experimental.affinity": {
+    "asvetliakov.vscode-neovim": 1
+  },
   "files.trimTrailingWhitespace": true,
-  // ========== Git ==========
-  "gitlens.currentLine.format": "${authorNotYou/}${date/}${message|50?}",
+  "git.openRepositoryInParentFolders": "never", // リポジトリルートで開いていない理由があると思うので無効化
+  "github.copilot.nextEditSuggestions.enabled": true,
+  "githubPullRequests.commentExpandState": "collapseAll", // コメントは折りたたんでおく
+  "githubPullRequests.pullBranch": "never", // pullは手動でやる
+  "gitlens.ai.model": "vscode",
+  "gitlens.ai.vscode.model": "copilot:gpt-4.1",
   "gitlens.codeLens.enabled": false,
-
-  // ========== Language-specific preferences ==========
-  // C++
-  "C_Cpp.default.cppStandard": "gnu++17",
-  // ipynb
-  "notebook.codeActionsOnSave": {
-    "source.organizeImports": "explicit"
-  },
-  "workbench.editorAssociations": {
-    "*.ipynb": "jupyter-notebook"
-  },
+  "gitlens.currentLine.format": "${authorNotYou/}${date/}${message|50?}",
   "notebook.cellToolbarLocation": {
     "default": "right",
     "jupyter-notebook": "left"
   },
-  "notebook.lineNumbers": "on",
-  // json
-  "[json][jsonc]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  "notebook.codeActionsOnSave": {
+    "source.organizeImports": "explicit"
   },
-  // Python
+  "notebook.lineNumbers": "on",
   "python.defaultInterpreterPath": "${userHome}/.pyenv/shims/python",
   "python.linting.enabled": true,
   "python.linting.lintOnSave": true,
-  "python.linting.ruffEnabled": true,
   "python.linting.pylintEnabled": false,
+  "python.linting.ruffEnabled": true,
   "ruff.organizeImports": true,
   "ruff.showSyntaxErrors": true,
-  "[python]": {
-    "editor.formatOnSave": true,
-    "editor.defaultFormatter": "charliermarsh.ruff"
-  },
-  // yaml
-  "[yaml]": {
-    "editor.defaultFormatter": "redhat.vscode-yaml"
-  },
-
   // ========== Vim Extension ==========
   "vim.hlsearch": true,
-  "vim.useCtrlKeys": true,
   "vim.insertModeKeyBindings": [
     {
       // jj to Escape
-      "before": ["j", "j"],
-      "after": ["<esc>"]
+      "after": ["<esc>"],
+      "before": ["j", "j"]
     }
   ],
   "vim.normalModeKeyBindingsNonRecursive": [
     {
+      "after": [],
       // use original undo by vscodevim undo
       "before": ["u"],
-      "after": [],
-      "commands": [{ "command": "undo" }]
+      "commands": [
+        {
+          "command": "undo"
+        }
+      ]
     },
     {
+      "after": [],
       // use original redo by vscodevim redo
       "before": ["<C-r>"],
-      "after": [],
-      "commands": [{ "command": "redo" }]
+      "commands": [
+        {
+          "command": "redo"
+        }
+      ]
     },
     {
+      "after": [],
       // discard to use sidebar toggle of original vscode keybindings
       "before": ["<C-b>"],
-      "after": [],
-      "commands": [{ "command": "workbench.action.toggleSidebarVisibility" }]
+      "commands": [
+        {
+          "command": "workbench.action.toggleSidebarVisibility"
+        }
+      ]
     },
     {
       "before": ["<Enter>"],
       "commands": ["editor.action.insertLineAfter"]
     }
   ],
-
-  // ========== Visual ==========
+  "vim.useCtrlKeys": true,
+  "window.title": "${rootName} - ${activeEditorShort}",
   "workbench.activityBar.location": "top",
-
-  // ========== Other Extensions ==========
-  "workbench.startupEditor": "none",
-
-  // ========== Theme ==========
   "workbench.colorTheme": "Nord",
-  "workbench.iconTheme": "ayu-mirage-zed"
+  "workbench.editorAssociations": {
+    "*.ipynb": "jupyter-notebook"
+  },
+  "workbench.iconTheme": "ayu-mirage-zed",
+  "workbench.startupEditor": "none"
 }
