@@ -197,7 +197,7 @@
   "vim.useCtrlKeys": true,
   "window.title": "${rootName} - ${activeEditorShort}",
   "workbench.activityBar.location": "top",
-  "workbench.colorTheme": "Nord",
+  "workbench.colorTheme": "Tomorrow Night Blue",
   "workbench.editorAssociations": {
     "*.ipynb": "jupyter-notebook"
   },
