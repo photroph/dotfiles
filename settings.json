@@ -1,5 +1,7 @@
 {
-  // VSCode built-in `JSON : Sort Document` コマンドでsortしたものを保存する
+  // 下記手順で手動運用 (このためだけにCI用のライブラリ管理したくないため)
+  // 1. Format Document から Prettier のformatterを選択して実行
+  // 2. VSCode built-in `JSON : Sort Document` コマンドでsortしたものを保存する
   "[dockercompose]": {
     "editor.autoIndent": "advanced",
     "editor.defaultFormatter": "redhat.vscode-yaml",
@@ -10,7 +12,8 @@
     "editor.defaultFormatter": "redhat.vscode-yaml"
   },
   "[json][jsonc]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
   },
   "[python]": {
     "editor.defaultFormatter": "charliermarsh.ruff",
