@@ -1,0 +1,11 @@
+model = "gpt-5.3-codex"
+personality = "pragmatic"
+model_reasoning_effort = "xhigh"
+plan_mode_reasoning_effort = "xhigh"
+notify = ["bash", "-lc", "$HOME/dotfiles/terminal-notifier/notify.sh \"Codex\" \"$1\"", "__codex_notify__"]
+
+[tui]
+status_line = ["model-name", "model-with-reasoning", "context-remaining"]
+notifications = ["agent-turn-complete"]
+notification_method = "bel"
+
