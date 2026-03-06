@@ -95,12 +95,19 @@ fi
 
 log "show start event=${EVENT_LABEL:-unknown} group=${GROUP_ID:-none}"
 
+alerter_args=(
+  --title "${TITLE:-Codex}"
+  --message "${MESSAGE:-Codex turn complete.}"
+  --group "${GROUP_ID:-codex}"
+  --json
+)
+
+if [ -n "${SOUND_NAME:-}" ]; then
+  alerter_args+=(--sound "${SOUND_NAME}")
+fi
+
 set +e
-result="$("$alerter_bin" \
-  --title "${TITLE:-Codex}" \
-  --message "${MESSAGE:-Codex turn complete.}" \
-  --group "${GROUP_ID:-codex}" \
-  --json 2>>"$log_file")"
+result="$("$alerter_bin" "${alerter_args[@]}" 2>>"$log_file")"
 rc=$?
 set -e
 
@@ -110,7 +117,7 @@ if [ "${#compact_result}" -gt 240 ]; then
   compact_result="${compact_result:0:237}..."
 fi
 
-log "show finish rc=$rc class=${classification:-unknown} result=${compact_result:-<empty>}"
+log "show finish rc=$rc class=${classification:-unknown} sound=${SOUND_NAME:-off} result=${compact_result:-<empty>}"
 
 if [ "$classification" = "content_clicked" ]; then
   if "$(

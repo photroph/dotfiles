@@ -6,6 +6,13 @@ export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:${PA
 
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 log_file="${TMPDIR:-/tmp}/codex-alerter.log"
+sound_name="${CODEX_NOTIFICATION_SOUND:-default}"
+
+case "$sound_name" in
+  off|none|silent)
+    sound_name=""
+    ;;
+esac
 
 log() {
   {
@@ -528,6 +535,7 @@ chmod 600 "$state_file" 2>/dev/null || true
 {
   printf 'TITLE=%q\n' "$title"
   printf 'MESSAGE=%q\n' "$MESSAGE"
+  printf 'SOUND_NAME=%q\n' "$sound_name"
   printf 'GROUP_ID=%q\n' "$GROUP_ID"
   printf 'EVENT_TYPE=%q\n' "$EVENT_TYPE"
   printf 'EVENT_LABEL=%q\n' "$EVENT_LABEL"
@@ -547,7 +555,7 @@ chmod 600 "$state_file" 2>/dev/null || true
   printf 'LOG_FILE=%q\n' "$log_file"
 } >"$state_file"
 
-log "notify start argc=${argc} arg1_is_placeholder=${arg1_is_placeholder} arg2_is_placeholder=${arg2_is_placeholder} stdin_present=${stdin_present} env_thread_id_present=${ENV_THREAD_ID_PRESENT:-0} source=${payload_source:-unknown} payload_len=${#payload} event=${EVENT_LABEL:-unknown} message_source=${MESSAGE_SOURCE:-unknown} thread_source=${THREAD_SOURCE:-none} rollout_lookup=${ROLLOUT_LOOKUP:-not_attempted} group=${GROUP_ID:-none} pane=${pane_id:-none} session=${session_id:-none} state=$state_file"
+log "notify start argc=${argc} arg1_is_placeholder=${arg1_is_placeholder} arg2_is_placeholder=${arg2_is_placeholder} stdin_present=${stdin_present} env_thread_id_present=${ENV_THREAD_ID_PRESENT:-0} source=${payload_source:-unknown} payload_len=${#payload} event=${EVENT_LABEL:-unknown} message_source=${MESSAGE_SOURCE:-unknown} thread_source=${THREAD_SOURCE:-none} rollout_lookup=${ROLLOUT_LOOKUP:-not_attempted} sound=${sound_name:-off} group=${GROUP_ID:-none} pane=${pane_id:-none} session=${session_id:-none} state=$state_file"
 
 # Run the blocking notification flow in a detached helper so Codex can return immediately.
 if nohup "$script_dir/show-and-wait.sh" "$state_file" >/dev/null 2>&1 & then
