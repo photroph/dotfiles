@@ -12,6 +12,7 @@ printf "${BOLD}Symlinking dotfiles...${RESET}\n\n"
 
 # 1対1のシンボリックリンク定義。追加は links=() に1行足すだけ。
 links=(
+  "git/gwq_config.toml:$HOME/.config/gwq/config.toml"
 )
 
 for entry in "${links[@]}"; do
