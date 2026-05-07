@@ -19,3 +19,6 @@ export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk-19.jdk/Contents/Home/"
 
 # use Homebrew
 export PATH="/opt/homebrew/bin:$PATH"
+
+# dotfiles のシンボリックリンクを張る
+bash "$HOME/dotfiles/scripts/setup_symlinks.sh"
