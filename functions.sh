@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Open Neovide in the background without blocking the terminal
+nv() { ( neovide "${@:-.}" & ) }
+
 search_command() {
     COMMANDS_FILE="${HOME}/dotfiles/commands.sh"
 
