@@ -30,3 +30,5 @@
     side-by-side = true
     syntax-theme = Solarized (dark)
     true-color = always
+[ghq]
+    root = ~/ghq
