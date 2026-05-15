@@ -1,8 +1,8 @@
 {
-  "title": "settings for Gemini",
+  "title": "settings for Gemini / ChatGPT",
   "rules": [
     {
-      "description": "Gemini appで ctrl+j → shift+return",
+      "description": "Gemini / ChatGPT appで ctrl+j → shift+return",
       "manipulators": [
         {
           "type": "basic",
@@ -23,7 +23,8 @@
             {
               "type": "frontmost_application_if",
               "bundle_identifiers": [
-                "^com\\.google\\.GeminiMacOS$"
+                "^com\\.google\\.GeminiMacOS$",
+                "^com\\.openai\\.chat$"
               ]
             }
           ]
