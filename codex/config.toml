@@ -9,8 +9,9 @@ hooks = true
 
 [tui]
 status_line = ["model-name", "model-with-reasoning", "context-remaining", "five-hour-limit", "weekly-limit"]
-notifications = ["agent-turn-complete", "exec-approval-request", "request-user-input"]
+notifications = ["agent-turn-complete", "approval-requested"]
 notification_method = "auto"
+notification_condition = "always"
 
 [plugins."caveman@local-catalog"]
 enabled = true
