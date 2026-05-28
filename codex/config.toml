@@ -4,8 +4,19 @@ model_reasoning_effort = "xhigh"
 plan_mode_reasoning_effort = "xhigh"
 notify = ["bash", "-lc", "exec \"$HOME/dotfiles/alerter/notify.sh\" \"Codex\" \"$1\"", "__codex_notify__"]
 
+[features]
+hooks = true
+
 [tui]
 status_line = ["model-name", "model-with-reasoning", "context-remaining", "five-hour-limit", "weekly-limit"]
 notifications = ["agent-turn-complete", "exec-approval-request", "request-user-input"]
 notification_method = "auto"
 
+[plugins."caveman@local-catalog"]
+enabled = true
+
+[hooks.state]
+
+[hooks.state."/Users/shigeo.hori/.codex/hooks.json:session_start:0:0"]
+enabled = true
+trusted_hash = "sha256:9746179aa2d5dd7984463a61465b4d4a5a6eaf76a41bad6c934e71b4e7315045"

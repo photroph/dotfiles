@@ -1,0 +1,17 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|resume",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/shigeo.hori/dotfiles/codex/hooks/session_start_caveman.sh",
+            "statusMessage": "Loading caveman mode",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
+}
