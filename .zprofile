@@ -22,3 +22,9 @@ export PATH="/opt/homebrew/bin:$PATH"
 
 # dotfiles のシンボリックリンクを張る
 bash "$HOME/dotfiles/scripts/setup_symlinks.sh"
+
+# Auto-start tmux
+if [[ -z "$TMUX" ]]; then
+  tmux
+fi
+
