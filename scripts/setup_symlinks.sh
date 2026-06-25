@@ -14,6 +14,7 @@ printf "${BOLD}Symlinking dotfiles...${RESET}\n\n"
 links=(
   "git/gwq_config.toml:$HOME/.config/gwq/config.toml"
   ".claude/keybindings.json:$HOME/.claude/keybindings.json"
+  ".claude/settings.json:$HOME/.claude/settings.json"
 )
 
 for entry in "${links[@]}"; do
