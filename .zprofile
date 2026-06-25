@@ -25,6 +25,8 @@ bash "$HOME/dotfiles/scripts/setup_symlinks.sh"
 
 # Auto-start tmux
 if [[ -z "$TMUX" ]]; then
-  tmux
+  echo -n "tmux session name: "
+  read session_name
+  tmux new-session -A -s "$session_name"
 fi
 
