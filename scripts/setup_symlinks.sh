@@ -13,6 +13,7 @@ printf "${BOLD}Symlinking dotfiles...${RESET}\n\n"
 # 1対1のシンボリックリンク定義。追加は links=() に1行足すだけ。
 links=(
   "git/gwq_config.toml:$HOME/.config/gwq/config.toml"
+  "leaf/config.toml:$HOME/.config/leaf/config.toml"
   ".claude/keybindings.json:$HOME/.claude/keybindings.json"
   ".claude/settings.json:$HOME/.claude/settings.json"
 )
