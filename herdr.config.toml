@@ -1,2 +1,9 @@
 [keys]
 prefix = "ctrl+;"
+
+[[keys.command]]
+key = "ctrl+g"
+type = "popup"
+command = "lazygit"
+width = "80%"
+height = "80%"
