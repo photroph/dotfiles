@@ -8,6 +8,8 @@ docker builder prune # Remove unused build cache
 
 git reset --soft HEAD^ # Undo last commit but keep changes staged
 
+linode-cli show-users
+linode-cli set-user {USERNAME}
 
 .venv/bin/activate # Python uv virtual environment activation
 deactivate # Python uv virtual environment deactivation
