@@ -1,5 +1,7 @@
 [keys]
 prefix = "ctrl+;"
+navigate_workspace_down = "j"
+navigate_workspace_up = "k"
 
 [experimental]
 switch_ascii_input_source_in_prefix = true
