@@ -23,11 +23,4 @@ export PATH="/opt/homebrew/bin:$PATH"
 # 対話シェルでのみ、dotfiles のシンボリックリンクを張る
 if [[ -o interactive ]]; then
   bash "$HOME/dotfiles/scripts/setup_symlinks.sh"
-
-  # Auto-start tmux when attached to a terminal
-  if [[ -z "$TMUX" && -t 0 && -t 1 ]]; then
-    echo -n "tmux session name: "
-    read session_name
-    tmux new-session -A -s "$session_name"
-  fi
 fi
