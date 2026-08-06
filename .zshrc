@@ -5,7 +5,7 @@ export TERM="xterm-256color"
 eval "$(starship init zsh)"
 # Set up fzf key bindings and fuzzy completion
 # Ctrl-T のファイル検索では、依存物やキャッシュの配下を探索しない
-export FZF_CTRL_T_COMMAND='command find -L . -mindepth 1 \( -name .git -o -name __pycache__ -o -name .terraform -o -name .ruff_cache \) -prune -o \( -type d -o -type f -o -type l \) -print 2>/dev/null'
+export FZF_CTRL_T_COMMAND='command find -L . -mindepth 1 \( -name .git -o -name __pycache__ -o -name .terraform -o -name .ruff_cache -o -name .venv \) -prune -o \( -type d -o -type f -o -type l \) -print 2>/dev/null'
 eval "$(fzf --zsh)"
 
 # aliases
