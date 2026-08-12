@@ -41,5 +41,15 @@ find "$KARABINER_SRC" -type f -name '*.json' -print0 |
     printf "${GREEN}  %s${RESET}\n" "$(basename "$json_file")"
   done
 
+# リネーム・削除された管理対象JSONの壊れたリンクを除去する。
+find "$KARABINER_DST" -type l -print0 |
+  while IFS= read -r -d '' link_path; do
+    link_target="$(readlink "$link_path")"
+    if [[ "$link_target" == "$DOTFILES/"* && ! -e "$link_path" ]]; then
+      rm "$link_path"
+      printf "${GREEN}  removed: %s${RESET}\n" "$(basename "$link_path")"
+    fi
+  done
+
 # アセットからコピー済みの有効ルールも最新内容へ同期する。
 "$DOTFILES/scripts/sync_karabiner_complex_modifications.sh"
