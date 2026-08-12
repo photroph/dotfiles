@@ -40,3 +40,6 @@ find "$KARABINER_SRC" -type f -name '*.json' -print0 |
     ln -sfn "$json_file" "$link_path"
     printf "${GREEN}  %s${RESET}\n" "$(basename "$json_file")"
   done
+
+# アセットからコピー済みの有効ルールも最新内容へ同期する。
+"$DOTFILES/scripts/sync_karabiner_complex_modifications.sh"
