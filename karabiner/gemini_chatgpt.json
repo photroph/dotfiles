@@ -24,7 +24,7 @@
               "type": "frontmost_application_if",
               "bundle_identifiers": [
                 "^com\\.google\\.GeminiMacOS$",
-                "^com\\.openai\\.chat$"
+                "^com\\.openai\\.codex$"
               ]
             }
           ]
