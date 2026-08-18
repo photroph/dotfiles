@@ -1,8 +1,15 @@
 {
-  "preferredNotifChannel": "iterm2",
+  "permissions": {
+    "ask": [
+      "Bash(git push *)",
+      "Bash(gh pr create *)"
+    ]
+  },
   "statusLine": {
     "type": "command",
     "command": "~/.claude/statusline.sh",
     "padding": 0
-  }
+  },
+  "preferredNotifChannel": "iterm2",
+  "agentPushNotifEnabled": true
 }
