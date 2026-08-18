@@ -17,6 +17,7 @@ links=(
   "herdr.config.toml:$HOME/.config/herdr/config.toml"
   ".claude/keybindings.json:$HOME/.claude/keybindings.json"
   ".claude/settings.json:$HOME/.claude/settings.json"
+  "codex/rules/git-remote-write.rules:$HOME/.codex/rules/git-remote-write.rules"
 )
 
 for entry in "${links[@]}"; do

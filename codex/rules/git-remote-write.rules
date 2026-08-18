@@ -1,0 +1,30 @@
+# Require explicit approval before publishing local work to GitHub.
+prefix_rule(
+    pattern = ["git", "push"],
+    decision = "prompt",
+    justification = "Pushing commits requires explicit user approval.",
+    match = [
+        "git push",
+        "git push origin main",
+        "git push --force-with-lease origin feature",
+    ],
+    not_match = [
+        "git pull",
+        "git status",
+    ],
+)
+
+prefix_rule(
+    pattern = ["gh", "pr", "create"],
+    decision = "prompt",
+    justification = "Creating a pull request requires explicit user approval.",
+    match = [
+        "gh pr create",
+        "gh pr create --draft",
+        "gh pr create --repo owner/repository",
+    ],
+    not_match = [
+        "gh pr list",
+        "gh pr view 123",
+    ],
+)
