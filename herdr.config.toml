@@ -8,6 +8,14 @@ navigate_workspace_up = "k"
 switch_ascii_input_source_in_prefix = true
 
 [[keys.command]]
+key = "ctrl+shift+p"
+type = "popup"
+command = "$SHELL"
+description = "open temporary shell popup pane"
+width = "80%"
+height = "80%"
+
+[[keys.command]]
 key = "ctrl+g"
 type = "popup"
 command = "lazygit"
