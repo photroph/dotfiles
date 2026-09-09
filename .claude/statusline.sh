@@ -7,7 +7,7 @@ CTX=$(awk -v v="$CTX" 'BEGIN{printf "%.0f", v}')
 FIVE=$(awk -v u="$FIVE_USED" 'BEGIN{printf "%.0f", 100-u}')
 WEEK=$(awk -v u="$WEEK_USED" 'BEGIN{printf "%.0f", 100-u}')
 
-MODEL=$(echo "$input" | jq -r '.model.display_name // "?"')
+MODEL=$(echo "$input" | jq -r '.model.display_name // "?"' | sed -E 's/[[:space:]]*\([^)]*\)[[:space:]]*$//')
 EFFORT=$(echo "$input" | jq -r '.effort.level // empty')
 IN_TOK=$(echo "$input" | jq -r '.context_window.total_input_tokens // 0')
 OUT_TOK=$(echo "$input" | jq -r '.context_window.total_output_tokens // 0')
