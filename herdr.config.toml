@@ -4,6 +4,18 @@ prefix = "ctrl+;"
 navigate_workspace_down = "j"
 navigate_workspace_up = "k"
 
+[ui.sidebar.spaces]
+rows = [
+  ["workspace"],
+  ["branch", "git_status"],
+]
+
+[ui.sidebar.agents]
+rows = [
+  ["state_icon", { token = "terminal_title_stripped", fg = "#bac2de", bold = true, dim = false }],
+  [{ token = "workspace", fg = "#a6adc8", bold = false, dim = false }, "agent"],
+]
+
 [experimental]
 switch_ascii_input_source_in_prefix = true
 
