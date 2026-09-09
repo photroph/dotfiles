@@ -3,6 +3,33 @@
 # Open Neovide in the background without blocking the terminal
 nvide() { neovide --fork "$@" }
 
+_herdr_agent_with_icon() {
+    local agent_command="$1"
+    local agent_icon="$2"
+    local pane_id="${HERDR_PANE_ID:-}"
+    shift 2
+
+    if [[ -n "$pane_id" ]] && command -v herdr >/dev/null 2>&1; then
+        herdr pane report-metadata "$pane_id" \
+            --source dotfiles:agent-icon \
+            --display-agent "$agent_icon" >/dev/null 2>&1
+    fi
+
+    command "$agent_command" "$@"
+    local exit_status=$?
+
+    if [[ -n "$pane_id" ]] && command -v herdr >/dev/null 2>&1; then
+        herdr pane report-metadata "$pane_id" \
+            --source dotfiles:agent-icon \
+            --clear-display-agent >/dev/null 2>&1
+    fi
+
+    return "$exit_status"
+}
+
+codex() { _herdr_agent_with_icon codex $'\uec81' "$@" }
+claude() { _herdr_agent_with_icon claude $'\uec82' "$@" }
+
 search_command() {
     COMMANDS_FILE="${HOME}/dotfiles/commands.sh"
 
@@ -41,4 +68,3 @@ start_session_with_ec2_instance(){
     instance_id=$(aws ec2 describe-instances --region $region --query 'Reservations[].Instances[].[InstanceId, State.Name, InstanceType, PrivateIpAddress, Platform || `Linux`, Tags[?Key == `Name`].Value | [0]]' --output text | column -t | fzf --reverse | cut -d ' ' -f 1)
     aws ssm start-session --target ${instance_id} --region $region
 }
-
