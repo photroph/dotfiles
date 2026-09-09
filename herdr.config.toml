@@ -4,6 +4,9 @@ prefix = "ctrl+;"
 navigate_workspace_down = "j"
 navigate_workspace_up = "k"
 
+[ui]
+hide_tab_bar_when_single_tab = true
+
 [ui.sidebar.spaces]
 rows = [
   ["workspace"],
