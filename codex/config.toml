@@ -8,6 +8,7 @@ service_tier = "default"
 [features]
 hooks = true
 fast_mode = false
+mentions_v2 = false
 
 [tui]
 status_line = ["model-name", "model-with-reasoning", "context-remaining", "five-hour-limit", "weekly-limit"]
