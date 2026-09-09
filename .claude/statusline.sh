@@ -34,7 +34,7 @@ fmt_tokens() {
 
 MODEL_LABEL="$MODEL"
 if [ -n "$EFFORT" ]; then
-  MODEL_LABEL="${MODEL} (${EFFORT})"
+  MODEL_LABEL="${MODEL} [${EFFORT}]"
 fi
 
-echo -e "\033[36m${MODEL_LABEL}\033[0m|Tok: $(fmt_tokens $IN_TOK)in/$(fmt_tokens $OUT_TOK)out|Remaining — Ctx:$(color $CTX)|5h:$(color $FIVE)|7d:$(color $WEEK)"
+echo -e "\033[36m${MODEL_LABEL}\033[0m|Ctx:$(color $CTX)|5h:$(color $FIVE)|7d:$(color $WEEK)|Tok: $(fmt_tokens $IN_TOK)in/$(fmt_tokens $OUT_TOK)out"
