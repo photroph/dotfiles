@@ -18,6 +18,10 @@ notification_method = "auto"
 notification_condition = "always"
 status_line_use_colors = true
 
+[tui.keymap.chat]
+decrease_reasoning_effort = "ctrl-minus"
+increase_reasoning_effort = "ctrl-="
+
 [plugins."caveman@local-catalog"]
 enabled = true
 
