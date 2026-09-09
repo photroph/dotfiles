@@ -11,10 +11,12 @@ fast_mode = false
 mentions_v2 = false
 
 [tui]
-status_line = ["model-name", "model-with-reasoning", "context-remaining", "five-hour-limit", "weekly-limit"]
+status_line = ["model-with-reasoning", "context-remaining", "five-hour-limit", "weekly-limit"]
+terminal_title = ["activity", "thread"]
 notifications = ["agent-turn-complete", "approval-requested"]
 notification_method = "auto"
 notification_condition = "always"
+status_line_use_colors = true
 
 [plugins."caveman@local-catalog"]
 enabled = true
