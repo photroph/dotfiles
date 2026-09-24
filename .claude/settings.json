@@ -12,6 +12,24 @@
     "command": "~/.claude/statusline.sh",
     "padding": 0
   },
+  "enabledPlugins": {
+    "codex@openai-codex": true,
+    "plannotator@plannotator": true
+  },
+  "extraKnownMarketplaces": {
+    "openai-codex": {
+      "source": {
+        "source": "github",
+        "repo": "openai/codex-plugin-cc"
+      }
+    },
+    "plannotator": {
+      "source": {
+        "source": "github",
+        "repo": "backnotprop/plannotator"
+      }
+    }
+  },
   "remoteControlAtStartup": true,
   "preferredNotifChannel": "iterm2",
   "agentPushNotifEnabled": true
