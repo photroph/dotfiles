@@ -12,6 +12,7 @@
     "command": "~/.claude/statusline.sh",
     "padding": 0
   },
+  "remoteControlAtStartup": true,
   "preferredNotifChannel": "iterm2",
   "agentPushNotifEnabled": true
 }
