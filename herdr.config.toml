@@ -55,3 +55,7 @@ command = "~/dotfiles/scripts/herdr_worktree_from_remote_branch.sh"
 description = "リモートブランチから worktree を作成"
 width = "80%"
 height = "80%"
+
+[theme]
+name = "solarized"
+auto_switch = false
