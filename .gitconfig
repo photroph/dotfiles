@@ -8,6 +8,8 @@
 	ff = false
 [pull]
 	ff = only
+[diff]
+    algorithm = histogram
 [alias]
 	co = checkout
     cm = commit -m
