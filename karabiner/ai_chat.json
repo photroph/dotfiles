@@ -1,8 +1,8 @@
 {
-  "title": "settings for Gemini / ChatGPT",
+  "title": "settings for Gemini / ChatGPT / Claude",
   "rules": [
     {
-      "description": "Gemini / ChatGPT appで ctrl+j → shift+return",
+      "description": "Gemini / ChatGPT / Claude appで ctrl+j → shift+return",
       "manipulators": [
         {
           "type": "basic",
@@ -24,7 +24,8 @@
               "type": "frontmost_application_if",
               "bundle_identifiers": [
                 "^com\\.google\\.GeminiMacOS$",
-                "^com\\.openai\\.codex$"
+                "^com\\.openai\\.codex$",
+                "^com\\.anthropic\\.claudefordesktop$"
               ]
             }
           ]
