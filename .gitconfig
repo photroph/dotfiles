@@ -34,3 +34,6 @@
     true-color = always
 [ghq]
     root = ~/ghq
+# マシン固有の設定は Git 管理外のファイルで上書きする。
+[include]
+    path = ~/dotfiles/.gitconfig.local
