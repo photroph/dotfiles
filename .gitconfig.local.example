@@ -1,0 +1,4 @@
+# このファイルを .gitconfig.local にコピーし、マシンごとの値を設定する。
+[user]
+    name = Your Name
+    email = you@example.com
