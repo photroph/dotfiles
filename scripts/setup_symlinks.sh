@@ -28,6 +28,16 @@ for entry in "${links[@]}"; do
   printf "${CYAN}%s${RESET}\n" "${dst/$HOME/~}"
 done
 
+# .claude/mods/ 配下の Claude mod は ~/.claude/skills/ に置くと自動ロードされるため、
+# ディレクトリを走査して全てリンクする(mod 追加時にこのスクリプトの編集は不要)。
+for mod_dir in "$DOTFILES"/.claude/mods/*/; do
+  [[ -d "$mod_dir" ]] || continue
+  mod_name="$(basename "$mod_dir")"
+  mkdir -p "$HOME/.claude/skills"
+  ln -sfn "${mod_dir%/}" "$HOME/.claude/skills/$mod_name"
+  printf "${CYAN}%s${RESET}\n" "~/.claude/skills/$mod_name"
+done
+
 # karabiner は complex_modifications/ 配下の全JSONをリンクする必要があるため、
 # find でディレクトリを走査して個別にリンクを張る
 KARABINER_SRC="$DOTFILES/karabiner"
