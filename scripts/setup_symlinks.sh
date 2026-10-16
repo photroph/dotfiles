@@ -28,15 +28,39 @@ for entry in "${links[@]}"; do
   printf "${CYAN}%s${RESET}\n" "${dst/$HOME/~}"
 done
 
-# .claude/mods/ 配下の Claude mod は ~/.claude/skills/ に置くと自動ロードされるため、
-# ディレクトリを走査して全てリンクする(mod 追加時にこのスクリプトの編集は不要)。
-for mod_dir in "$DOTFILES"/.claude/mods/*/; do
-  [[ -d "$mod_dir" ]] || continue
-  mod_name="$(basename "$mod_dir")"
-  mkdir -p "$HOME/.claude/skills"
-  ln -sfn "${mod_dir%/}" "$HOME/.claude/skills/$mod_name"
-  printf "${CYAN}%s${RESET}\n" "~/.claude/skills/$mod_name"
-done
+# src_root/*/ のうち marker(ファイル/ディレクトリ名)を持つものを、各 target ディレクトリへ
+# シンボリックリンクする。走査方式なので追加時にこのスクリプトの編集は不要。
+#   - 同名の実ディレクトリ/実ファイルは上書きしない(ln -sfn だと中にリンクが作られてしまう)
+#   - src_root 配下を指していてリンク先が消えたリンクは掃除する
+# usage: link_dirs <src_root> <marker> <target>...
+link_dirs() {
+  local src_root="$1" marker="$2"
+  shift 2
+  local target src_dir name dst link
+  for target in "$@"; do
+    mkdir -p "$target"
+    for src_dir in "$src_root"/*/; do
+      [[ -e "${src_dir}${marker}" ]] || continue
+      name="$(basename "$src_dir")"
+      dst="$target/$name"
+      if [[ -e "$dst" && ! -L "$dst" ]]; then
+        printf "${CYAN}skip (not a symlink): %s${RESET}\n" "${dst/$HOME/~}"
+        continue
+      fi
+      ln -sfn "${src_dir%/}" "$dst"
+      printf "${CYAN}%s -> %s${RESET}\n" "${dst/$HOME/~}" "${src_dir%/}"
+    done
+    for link in "$target"/*; do
+      [[ -L "$link" && ! -e "$link" ]] || continue
+      [[ "$(readlink "$link")" == "$src_root/"* ]] || continue
+      rm "$link"
+      printf "${GREEN}  removed: %s${RESET}\n" "${link/$HOME/~}"
+    done
+  done
+}
+
+# .claude/mods/ 配下の Claude mod は ~/.claude/skills/ に置くと自動ロードされる。
+link_dirs "$DOTFILES/.claude/mods" ".claude-plugin" "$HOME/.claude/skills"
 
 # karabiner は complex_modifications/ 配下の全JSONをリンクする必要があるため、
 # find でディレクトリを走査して個別にリンクを張る
@@ -66,33 +90,5 @@ find "$KARABINER_DST" -type l -print0 |
 
 # ~/.agent/skills はリポジトリ管理外の共有スキル置き場(VPNプロファイル名など機微な内容を含むためgit管理しない)。
 # 中身は各マシンで直接管理し、ここでは codex / claude の両方から見えるよう配線だけ行う。
-# 走査方式なのでスキル追加時にこのスクリプトの編集は不要。
-AGENT_SKILLS="$HOME/.agent/skills"
-AGENT_TARGETS=("$HOME/.codex/skills" "$HOME/.claude/skills")
 printf "\n${BOLD}Wiring ~/.agent skills (repo-untracked)...${RESET}\n"
-
-for target in "${AGENT_TARGETS[@]}"; do
-  mkdir -p "$target"
-
-  # 実在するスキル(SKILL.md を持つディレクトリ)だけリンクする。
-  for skill_dir in "$AGENT_SKILLS"/*/; do
-    [[ -f "${skill_dir}SKILL.md" ]] || continue
-    name="$(basename "$skill_dir")"
-    dst="$target/$name"
-    # 同名の実ディレクトリ/実ファイルは上書きしない(ln -sfn だと中にリンクが作られてしまう)。
-    if [[ -e "$dst" && ! -L "$dst" ]]; then
-      printf "${CYAN}skip (not a symlink): %s${RESET}\n" "${dst/$HOME/~}"
-      continue
-    fi
-    ln -sfn "${skill_dir%/}" "$dst"
-    printf "${CYAN}%s -> ~/.agent/skills/%s${RESET}\n" "${dst/$HOME/~}" "$name"
-  done
-
-  # ~/.agent/skills を指していてリンク先が消えたリンクを掃除する。
-  for link in "$target"/*; do
-    [[ -L "$link" && ! -e "$link" ]] || continue
-    [[ "$(readlink "$link")" == "$AGENT_SKILLS/"* ]] || continue
-    rm "$link"
-    printf "${GREEN}  removed: %s${RESET}\n" "${link/$HOME/~}"
-  done
-done
+link_dirs "$HOME/.agent/skills" "SKILL.md" "$HOME/.codex/skills" "$HOME/.claude/skills"
