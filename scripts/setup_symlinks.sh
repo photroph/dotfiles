@@ -63,3 +63,36 @@ find "$KARABINER_DST" -type l -print0 |
 
 # アセットからコピー済みの有効ルールも最新内容へ同期する。
 "$DOTFILES/scripts/sync_karabiner_complex_modifications.sh"
+
+# ~/.agent/skills はリポジトリ管理外の共有スキル置き場(VPNプロファイル名など機微な内容を含むためgit管理しない)。
+# 中身は各マシンで直接管理し、ここでは codex / claude の両方から見えるよう配線だけ行う。
+# 走査方式なのでスキル追加時にこのスクリプトの編集は不要。
+AGENT_SKILLS="$HOME/.agent/skills"
+AGENT_TARGETS=("$HOME/.codex/skills" "$HOME/.claude/skills")
+printf "\n${BOLD}Wiring ~/.agent skills (repo-untracked)...${RESET}\n"
+
+for target in "${AGENT_TARGETS[@]}"; do
+  mkdir -p "$target"
+
+  # 実在するスキル(SKILL.md を持つディレクトリ)だけリンクする。
+  for skill_dir in "$AGENT_SKILLS"/*/; do
+    [[ -f "${skill_dir}SKILL.md" ]] || continue
+    name="$(basename "$skill_dir")"
+    dst="$target/$name"
+    # 同名の実ディレクトリ/実ファイルは上書きしない(ln -sfn だと中にリンクが作られてしまう)。
+    if [[ -e "$dst" && ! -L "$dst" ]]; then
+      printf "${CYAN}skip (not a symlink): %s${RESET}\n" "${dst/$HOME/~}"
+      continue
+    fi
+    ln -sfn "${skill_dir%/}" "$dst"
+    printf "${CYAN}%s -> ~/.agent/skills/%s${RESET}\n" "${dst/$HOME/~}" "$name"
+  done
+
+  # ~/.agent/skills を指していてリンク先が消えたリンクを掃除する。
+  for link in "$target"/*; do
+    [[ -L "$link" && ! -e "$link" ]] || continue
+    [[ "$(readlink "$link")" == "$AGENT_SKILLS/"* ]] || continue
+    rm "$link"
+    printf "${GREEN}  removed: %s${RESET}\n" "${link/$HOME/~}"
+  done
+done
