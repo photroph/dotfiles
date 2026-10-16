@@ -1,0 +1,1 @@
+{ "name": "hide-cycle-hint", "version": "0.1.0", "description": "Removes the '(shift+tab to cycle)' text from the prompt footer hint" }
