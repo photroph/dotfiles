@@ -7,6 +7,10 @@
       "Bash(gh * pr create *)"
     ]
   },
+  "model": "sonnet",
+  "attribution": {
+    "sessionUrl": false
+  },
   "statusLine": {
     "type": "command",
     "command": "~/.claude/statusline.sh",
@@ -30,7 +34,8 @@
       }
     }
   },
-  "remoteControlAtStartup": true,
+  "theme": "dark-daltonized",
   "preferredNotifChannel": "iterm2",
+  "remoteControlAtStartup": true,
   "agentPushNotifEnabled": true
 }
