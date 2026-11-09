@@ -4,7 +4,7 @@ vim.scriptencoding = 'utf-8'
 
 -- neovide settings
 vim.g.neovide_window_blurred = false
-vim.g.neovide_transparency = 0.8
+vim.g.neovide_opacity = 0.8
 
 -- visual settings
 vim.syntax = 'enable'
@@ -33,13 +33,18 @@ vim.o.ignorecase = true -- 検索時に大文字小文字を区別しない
 vim.o.smartcase = true -- 検索時に大文字が含まれていたら大文字小文字を区別する
 
 -- other
-vim.mouse = '' -- disable mouse
+vim.o.mouse = 'a' -- enable mouse (選択・右クリックメニュー)
+vim.o.clipboard = 'unnamedplus' -- yank/paste をシステムクリップボードと共有
 vim.o.backup = false
 vim.o.swapfile = false
 vim.o.undofile = false
 
 -- enable
 vim.api.nvim_set_keymap('!', '<D-v>', '<C-R>+', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<D-v>', '"+p', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('v', '<D-v>', '"+P', { noremap = true, silent = true})
+-- Cmd+C でビジュアル選択をコピー
+vim.api.nvim_set_keymap('v', '<D-c>', '"+y', { noremap = true, silent = true})
 -- double esc to clear highlights
 vim.api.nvim_set_keymap('n', '<Esc><Esc>', ':nohlsearch<CR>', { noremap = true, silent = true})
 -- jj to esc
