@@ -37,3 +37,9 @@
 # マシン固有の設定は Git 管理外のファイルで上書きする。
 [include]
     path = ~/dotfiles/.gitconfig.local
+[credential "https://github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
