@@ -17,6 +17,7 @@ links=(
   "herdr.config.toml:$HOME/.config/herdr/config.toml"
   ".claude/keybindings.json:$HOME/.claude/keybindings.json"
   ".claude/settings.json:$HOME/.claude/settings.json"
+  ".claude/hooks/session-title-from-ai.sh:$HOME/.claude/hooks/session-title-from-ai.sh"
   "codex/rules/git-remote-write.rules:$HOME/.codex/rules/git-remote-write.rules"
   "init.lua:$HOME/.config/nvim/init.lua"
 )
